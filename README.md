@@ -38,10 +38,12 @@ This script trains the  model on the specified dataset.
 To train the model, 
 first set your data storage dir in working_dir_roor.py 
 run:
+
 python main.py --evaluation False
 
 
 To evaluate the model, run:
+
 python main.py --evaluation True
 
  
