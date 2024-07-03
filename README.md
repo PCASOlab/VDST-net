@@ -24,11 +24,11 @@ Ensure you have the following installed:
  Ensure you have the necessary directories and data in place:
  
 Usage
-1. Dataset Script: data_choloc_reader_convect.py
+1. Dataset Script: data_cholec_reader_convect.py
 Convert the raw cholec80 data into pkls of videos clips.
 
 download data:
-cholec80: "https://s3.unistra.fr/camma_public/datasets/cholec80/cholec80.tar.gz"
+Cholec80 dataset: [Download Cholec80](https://s3.unistra.fr/camma_public/datasets/cholec80/cholec80.tar.gz)
  
 
 2. Training Script: main.py
