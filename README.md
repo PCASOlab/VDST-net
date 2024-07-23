@@ -53,10 +53,9 @@ Additionally, we are also sharing the data pre-processing script for cholec80 vi
         * `unet_with_pos.py`: Position-augmented latent diffusion decoder
         * `backbone.py`: Backbone CNN for object encoder
         * `slot_attn.py`: Slot Attention module for object encoder
-* `scripts`: Helper scripts
-    * `data_preprocess`: Dataset downloading and pre-processing
-    * `environment.sh`: Environment setup
-* `configs`: Configuration files for training and evaluation.
+* `data`: Code for data pre-processing
+    * `data.py`: load data to batches, and preprocessing on-the-fly
+     
 
 
 
