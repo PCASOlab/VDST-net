@@ -99,6 +99,7 @@ python main.py --evaluation True  --visdom_flag False --display_flag True
 
 ## Comming soon
 * Implementation with Resnet backbone
+* Data parallelization for training
 * Training and evaluation on the YouTube-objects dataset
 
  
