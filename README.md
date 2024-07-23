@@ -7,22 +7,22 @@ This is an official PyTorch implementation of the VDST-Net model.
  
 
 <p align="center">
-  <img src="figure/task.jpeg" width="90%" />
+  <img src="figure/task.jpeg" width="80%" />
 </p>
 
 
 <p align="center">
-  <img src="figure/Method.jpeg" width="90%" />
+  <img src="figure/Method.jpeg" width="70%" />
 </p>
 
 
 <p align="center">
-  <img src="figure/Ablation.jpeg" width="90%" />
+  <img src="figure/Ablation.jpeg" width="80%" />
 </p>
 
 
 <p align="center">
-  <img src="figure/YTOBJ_supple.jpeg" width="90%" />
+  <img src="figure/YTOBJ_Supple.jpeg" width="80%" />
 </p>
 
 
