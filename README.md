@@ -7,8 +7,24 @@ This is an official PyTorch implementation of the VDST-Net model.
  
 
 <p align="center">
-  <img src="figure/task.png" width="90%" />
+  <img src="figure/task.jpeg" width="90%" />
 </p>
+
+
+<p align="center">
+  <img src="figure/Method.jpeg" width="90%" />
+</p>
+
+
+<p align="center">
+  <img src="figure/Ablation.jpeg" width="90%" />
+</p>
+
+
+<p align="center">
+  <img src="figure/YTOBJ_supple.jpeg" width="90%" />
+</p>
+
 
 
 ## Setup and Installation
