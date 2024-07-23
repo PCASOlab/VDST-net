@@ -21,16 +21,19 @@ We utilize a semi-decoupled distillation mechanism, supervising teacher and stud
   <img src="figure/Method.jpeg" width="70%" />
 </p>
 
+The challenge imposed by the high uncertainty of the label is amplified in the TOP situation. The results highlight the significance of semi-decouple knowledge distillation through teacher and student modules for enhanced segmentation accuracy. A standalone student module, lacking frame-level supervision, shows a notable decline in segmentation performance (Dice score from 67.80\% to 47.64\%), because it predicts error activation by taking information from wrong frames or features, pointed out by red arrowheads in the following figure. The teacher module has no such issue but lacks the ability to generate activation maps with good connectivity, as indicated by red asterisks in the figure 
 
 <p align="center">
   <img src="figure/Ablation.jpeg" width="80%" />
 </p>
 
-
+Our method not only works for the surgical domain, also demonstrated superior performance on a general dataset: YouYube-Objects video data. Under the training condition of one class label per video. Our method demonstrates robustness, producing activation maps and segmentation masks that accurately follow the objects' contours, with minimal false activation on the background.  
 <p align="center">
   <img src="figure/YTOBJ_Supple.jpeg" width="80%" />
 </p>
 
+
+## Repository Overview
 
 
 ## Setup and Installation
@@ -72,5 +75,10 @@ python main.py --evaluation False
 To evaluate the model, run:
 
 python main.py --evaluation True
+
+
+## Comming soon
+* Implementation with Resnet backbone
+* Training and evaluation on the YouTube-objects dataset
 
  
