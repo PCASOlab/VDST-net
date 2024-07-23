@@ -61,7 +61,7 @@ Additionally, we are also sharing the data pre-processing script for cholec80 vi
 
 ## Setup and Installation
 
-### Prerequisites
+### Dependencies
 
 Ensure you have the following installed:
 - Python 3.x
@@ -70,38 +70,31 @@ Ensure you have the following installed:
 - PIL
 - OpenCV
 
-### Installation
-
-1. Clone this repository 
  
- Ensure you have the necessary directories and data in place:
- 
-Usage
-1. Dataset Script: data_cholec_reader_convect.py
-Convert the raw cholec80 data into pkls of videos clips.
 
-download data:
+
+### Preparing Data
+
+*download raw cholec80 data:
 Cholec80 dataset: [Download Cholec80](https://s3.unistra.fr/camma_public/datasets/cholec80/cholec80.tar.gz)
 
+*Use Dataset pre-processing Script: data_cholec_reader_convect.py
+Convert the raw cholec80 data into pkls of video clips.
 
 
-To train the model, 
-first pretrained backbone can be downloaded here: "https://upenn.box.com/s/nsukq51tbdxvlgh6lugnkvufnt42blk1".  Put the dino_deitsmall8_pretrain.pth under the config_root folder
+### Train the model 
+ *pretrained backbone can be downloaded here: "https://upenn.box.com/s/nsukq51tbdxvlgh6lugnkvufnt42blk1".  paste the dino_deitsmall8_pretrain.pth under the config_root folder
 
-2. Training Script: main.py
-This script trains the  model on the specified dataset. 
+*Training Script: main.py
  
-
 To train the model, 
-first set your data storage dir in working_dir_roor.py 
+first, set your data storage dir in working_dir_root.py 
 run:
+python main.py --evaluation False  --visdom_flag False --display_flag False
 
-python main.py --evaluation False
 
-
-To evaluate the model, run:
-
-python main.py --evaluation True
+To evaluate the model, and visualize activation maps, run:
+python main.py --evaluation True  --visdom_flag False --display_flag True
 
 
 ## Comming soon
