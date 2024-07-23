@@ -75,15 +75,15 @@ Ensure you have the following installed:
 
 ### Preparing Data
 
-*download raw cholec80 data:
+* download raw cholec80 data:
 Cholec80 dataset: [Download Cholec80](https://s3.unistra.fr/camma_public/datasets/cholec80/cholec80.tar.gz)
 
-*Use Dataset pre-processing Script: data_cholec_reader_convect.py
+* Use Dataset pre-processing Script: data_cholec_reader_convect.py
 Convert the raw cholec80 data into pkls of video clips.
 
 
 ### Train the model 
- *pretrained backbone can be downloaded here: "https://upenn.box.com/s/nsukq51tbdxvlgh6lugnkvufnt42blk1".  paste the dino_deitsmall8_pretrain.pth under the config_root folder
+ * pretrained backbone can be downloaded here: "https://upenn.box.com/s/nsukq51tbdxvlgh6lugnkvufnt42blk1".  paste the dino_deitsmall8_pretrain.pth under the config_root folder
 
 *Training Script: main.py
  
