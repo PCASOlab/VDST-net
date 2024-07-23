@@ -15,7 +15,7 @@ import numpy as np
 import torch.nn as nn
 import torch.utils.data
 from torch.autograd import Variable
-from model import  model_experiement, model_infer,model_infer_TC
+from model import  model_experiement, model_KD
 from working_dir_root import Output_root
 from dataset.dataset import myDataloader
 from display import Display
@@ -75,7 +75,7 @@ def find_external_drives():
  
 ############ for the linux to find the extenral drive
 
-Model_infer = model_infer_TC._Model_infer(GPU_mode,num_gpus)
+Model_infer = model_KD._Model_infer(GPU_mode,num_gpus)
 # if GPU_mode == True:
 #     if num_gpus > 1:
 #         Model_infer.VideoNets = torch.nn.DataParallel(Model_infer.VideoNets)

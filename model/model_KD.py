@@ -4,9 +4,9 @@ import torch.nn.functional as F
 import torchvision.models as models
 from model.vision_transformer import vit_small, vit_base
 
-from model.model_3dcnn_linear_TC import _VideoCNN
-from model.model_3dcnn_linear_ST import _VideoCNN_S
-from working_dir_root import learningR,learningR_res,SAM_pretrain_root,Load_feature,Weight_decay,Evaluation,config_root
+from model.model_ST import _VideoST
+from model.model_TC import _VideoTC
+from working_dir_root import learningR,learningR_res,Load_feature,Weight_decay,Evaluation,config_root
 from dataset.dataset import class_weights
  
 # from MobileSAM.mobile_sam import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
@@ -26,8 +26,8 @@ class _Model_infer(object):
         self.Vit_encoder = vit_small(8)
        
         self.Vit_encoder.load_state_dict(torch.load(config_root + "dino_deitsmall8_pretrain.pth"), strict=False)
-        self.VideoNets = _VideoCNN()
-        self.VideoNets_S = _VideoCNN_S()
+        self.VideoNets = _VideoTC()
+        self.VideoNets_S = _VideoST()
         self.input_size = 1024
         resnet34 = models.resnet34(pretrained=True)
         self.gradcam = None

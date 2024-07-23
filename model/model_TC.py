@@ -7,40 +7,39 @@ import model.base_models as block_buider
 from dataset.dataset import Obj_num, Seperate_LR
 import random
 from working_dir_root import Evaluation
-
 # Seperate_LR = True # seperate left and right
 
-class _VideoCNN_S(nn.Module):
+class _VideoTC(nn.Module):
     # output width=((W-F+2*P )/S)+1
 
     def __init__(self, inputC=256,base_f=384):
-        super(_VideoCNN_S, self).__init__()
+        super(_VideoTC, self).__init__()
         ## depth rescaler: -1~1 -> min_deph~max_deph
 
         # a side branch predict with original iamge with rectangular kernel
         # 256*256 - 128*256
         # limit=1024
-        self.blocks = nn.ModuleList()
         Drop_out = True
         if Evaluation == True:
             Drop_out = False
+        self.blocks = nn.ModuleList()
 
         #
 
-        self.blocks.append(block_buider.conv_keep_all(inputC, base_f,k=(1,1,1), s=(1,1,1), p=(0,0,0),MLP_usage=False))
+        self.blocks.append(block_buider.conv_keep_all(inputC, base_f, MLP_usage=True))
 
-      
+        # # 16*256  - 8*256
         # # self.side_branch1.append(  conv_keep_all(base_f, base_f))
-        self.blocks.append(block_buider.conv_keep_all(base_f, base_f*2,k=(3,1,1), s=(1,1,1), p=(1,0,0),MLP_usage=False))
+        # # self.side_branch1.append(  conv_keep_all(base_f, base_f))
+        self.blocks.append(block_buider.conv_keep_all(base_f, base_f*2,MLP_usage=True))
         # self.blocks.append(block_buider.conv_keep_all(base_f, base_f,resnet = True,dropout=False))
         # self.blocks.append(block_buider.conv_keep_all(base_f, base_f*2,dropout=False))
         base_f = base_f * 2
         # # 8*256  - 4*256\
-        self.blocks.append(block_buider.conv_keep_all(base_f, base_f*2,k=(3,1,1), s=(1,1,1), p=(1,0, 0),MLP_usage=False))
+        self.blocks.append(block_buider.conv_keep_all(base_f, base_f*2, MLP_usage=True))
         base_f = base_f * 2
 
-        # self.blocks.append(block_buider.conv_keep_all(base_f, base_f*2,k=(1,1,1), s=(1,1,1), p=(0,0, 0),resnet = False))
-        
+         
         #     self.classifier = nn.Linear(base_f, Obj_num )  # 4*256
         if Seperate_LR == True: # douvle the channel as the cat of flow masked tensor
             self.classifier = nn.Conv3d(int(base_f+inputC+base_f/2+base_f/4), Obj_num *2, (1,1,1), (1,1,1), (0,0,0), bias=False) # 4*256
@@ -113,9 +112,7 @@ class _VideoCNN_S(nn.Module):
         # input = Avg_pool (input)
         bz, ch, D, H, W = input.size()
         # activation = nn.Sigmoid()
-        # activation = nn.ReLU()
- 
-        # Maxpool_keepC = nn.MaxPool3d((D,1,1),stride=(1,1,1))
+      
         flag =random. choice([False, False])
         if flag == True: 
             Maxpool_keepD = nn.MaxPool3d((1,H,W),stride=(1,1,1))
@@ -125,8 +122,8 @@ class _VideoCNN_S(nn.Module):
             Maxpool_keepC = nn.MaxPool3d((D,1,1),stride=(1,1,1))
         
         slice_valid = Maxpool_keepD(input)
-        final = Maxpool_keepC(slice_valid)
-        # final = self.Top_rank_pooling(slice_valid,5)
+        # final = Maxpool_keepC(slice_valid)
+        final = self.Top_rank_pooling(slice_valid,10)
         # final = self.Threshold_pooling(slice_valid)
 
         #Note: how about add a number of object loss here ??
@@ -149,9 +146,7 @@ class _VideoCNN_S(nn.Module):
             features.append(out)
         bz, ch, D, H, W = out.size()
         # downsampled_mask = F.interpolate(input_flows, size=(H, W), mode='nearest')
-        # expanded_mask = downsampled_mask.unsqueeze(1)
-      
-        # cat_feature = torch.cat([out, out], dim=1)
+     
         cat_feature = torch.cat([x, features[0],features[1],features[2]], dim=1)
 
         activation = nn.Sigmoid()
@@ -160,7 +155,7 @@ class _VideoCNN_S(nn.Module):
         # pooled = pooled.view(out.size(0), -1)
         # Check the size of the final feature map
         # final = self.classifier(pooled)
-        flag =random. choice([False, False])
+        flag =random. choice([True, False])
         cam = activationLU(self.classifier(cat_feature))
 
         if flag== True:
