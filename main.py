@@ -72,25 +72,7 @@ def find_external_drives():
                        and not drive.startswith(('media', 'run', 'dev'))]
 
     return external_drives
-
-# weight init
-def weights_init(m):
-    classname = m.__class__.__name__
-    if classname.find('Conv') != -1:
-        m.weight.data.normal_(0.0, 0.02)
-    elif classname.find('BatchNorm') != -1:
-        m.weight.data.normal_(1.0, 0.02)
-        m.bias.data.fill_(0)
-    pass
-############ for the linux to find the extenral drive
-external_drives = find_external_drives()
-
-if external_drives:
-    print("External drives found:")
-    for drive in external_drives:
-        print(drive)
-else:
-    print("No external drives found.")
+ 
 ############ for the linux to find the extenral drive
 
 Model_infer = model_infer_TC._Model_infer(GPU_mode,num_gpus)
@@ -102,9 +84,8 @@ Model_infer = model_infer_TC._Model_infer(GPU_mode,num_gpus)
 # Model.cuda()
 dataLoader = myDataloader(img_size = img_size,Display_loading_video = False,Read_from_pkl= True,Save_pkl = False,Load_flow=Load_flow, Load_feature=Load_feature)
 
-if Continue_flag == False:
-    Model_infer.VideoNets.apply(weights_init)
-else:
+if Continue_flag == True:
+    
     Model_infer.VideoNets.load_state_dict( torch.load(Output_root + 'outNets_tc' + loadmodel_index ) )
     Model_infer.VideoNets_S.load_state_dict( torch.load(Output_root + 'outNets_st' + loadmodel_index ) )
     Model_infer.Vit_encoder.load_state_dict( torch.load(Output_root + 'outNets_vit' + loadmodel_index ) )
@@ -123,6 +104,7 @@ displayer = Display(GPU_mode)
 epoch =0
 features =None
 visdom_id=0
+Enable_ST = False
 while (1):
     start_time = time()
     input_videos, labels= dataLoader.read_a_batch()
@@ -139,7 +121,7 @@ while (1):
 
     lr=scheduler.cyclic_learning_rate(current_epoch=epoch,max_lr=Max_lr,min_lr=learningR,cycle_length=4)
     print("learning rate is :" + str(lr))
-    Model_infer.optimization(labels_GPU,lr) 
+    Model_infer.optimization(labels_GPU,Enable_ST=Enable_ST) 
 
     if  Save_feature_OLG== True:
         this_features= Model_infer.f[0].permute(1,0,2,3).half()
@@ -164,6 +146,8 @@ while (1):
         print("finished epoch" + str (epoch) )
         dataLoader.all_read_flag = 0
         read_id=0
+        if epoch >9:
+            Enable_ST = True
 
         # break
     if read_id % 1== 0   :

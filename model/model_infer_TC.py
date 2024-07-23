@@ -163,7 +163,7 @@ class _Model_infer(object):
         slice_hard_label = (count_masks>10)*1.0
         return slice_hard_label,binary_mask
  
-    def optimization(self, label,lr):
+    def optimization(self, label,Enable_ST = False):
         # for param_group in  self.optimizer.param_groups:
         #     param_group['lr'] = lr 
         self.optimizer.zero_grad()
@@ -186,28 +186,29 @@ class _Model_infer(object):
         self.loss.backward( )
 
         self.optimizer.step()
+        if Enable_ST:
 
-        out_logits_s = self.output_s.view(label.size(0), -1)
-        # bz,length = out_logits.size()
+            out_logits_s = self.output_s.view(label.size(0), -1)
+            # bz,length = out_logits.size()
 
-        # label_mask_torch = torch.tensor(label_mask, dtype=torch.float32)
-        # label_mask_torch = label_mask_torch.repeat(bz, 1)
-        # label_mask_torch = label_mask_torch.to(self.device)
-        self.loss_s_v = self.customeBCE(out_logits_s * label_mask_torch, label * label_mask_torch)
-        bz, ch, D, H, W = self.cam3D_s.size()
+            # label_mask_torch = torch.tensor(label_mask, dtype=torch.float32)
+            # label_mask_torch = label_mask_torch.repeat(bz, 1)
+            # label_mask_torch = label_mask_torch.to(self.device)
+            self.loss_s_v = self.customeBCE(out_logits_s * label_mask_torch, label * label_mask_torch)
+            bz, ch, D, H, W = self.cam3D_s.size()
 
-        valid_masks_repeated = self.slice_hard_label.repeat(1, 1, 1, H, W)
-        predit_mask= self.cam3D_s * valid_masks_repeated
-        target_mask= self.cam3D_target  * valid_masks_repeated
-        # self.loss_s_pix = self.customeBCE(self.cam3D_s * valid_masks_repeated, self.binary_masks * valid_masks_repeated)
-        self.loss_s_pix = self.customeBCE_mask(predit_mask , target_mask   )
+            valid_masks_repeated = self.slice_hard_label.repeat(1, 1, 1, H, W)
+            predit_mask= self.cam3D_s * valid_masks_repeated
+            target_mask= self.cam3D_target  * valid_masks_repeated
+            # self.loss_s_pix = self.customeBCE(self.cam3D_s * valid_masks_repeated, self.binary_masks * valid_masks_repeated)
+            self.loss_s_pix = self.customeBCE_mask(predit_mask , target_mask   )
 
-        self.loss_s = self.loss_s_v  +self.loss_s_pix
-        # self.set_requires_grad(self.VideoNets, False)
-        self.loss_s.backward( )
-        self.optimizer_s.step()
-        self.lossDisplay = self.loss. data.mean()
-        self.lossDisplay_s = self.loss_s. data.mean()
+            self.loss_s = self.loss_s_v  +self.loss_s_pix
+            # self.set_requires_grad(self.VideoNets, False)
+            self.loss_s.backward( )
+            self.optimizer_s.step()
+            self.lossDisplay = self.loss. data.mean()
+            self.lossDisplay_s = self.loss_s. data.mean()
 
     def optimization_slicevalid(self):
 

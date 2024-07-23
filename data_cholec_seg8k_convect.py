@@ -38,7 +38,7 @@ class_name_mapping={0: 'Black Background',
 # Defining input images path, output path, masks path and labels path
 img_size = (256, 256)  # Specify the desired size
 # video_buffer_len = 29
-downsample_len = 29
+downsample_len = 30
 # Function to read labels from a text file
 def read_labels(file_path):
     labels = np.genfromtxt(file_path, skip_header=1, usecols=(1, 2, 3, 4, 5, 6, 7), dtype=int)
@@ -162,30 +162,4 @@ print("Total number of masks:", p)
 
 len(os.listdir(rawimages_path)), len(os.listdir(maskimages_path))
 
-
-
-# for directory in os.listdir(path):
-#     dir_path=os.path.join(path, directory)
-#     m=m+len(os.listdir(dir_path))
-#     q=q+1
-#     for sub_dir in os.listdir(dir_path):
-#         sub_dir_path=os.path.join(dir_path, sub_dir)
-#         n=n+len(os.listdir(sub_dir_path))
-#         file_list =  os.listdir(sub_dir_path)
-#         sorted_file_list = sorted(file_list, key=lambda x: int(x.split('_')[1]))
-#         for image in sorted_file_list:
-#             src_path=os.path.join(sub_dir_path, image)
-#             # Rename the image based on sub-directory to distinguish images with same names from different directories
-#             newname=sub_dir+image
-#             if 'mask' not in image:   # Criterion for raw image             
-#                 newpath=os.path.join(rawimages_path, newname)
-#                 dest_path=os.path.join(rawimages_path, image)
-#                 shutil.copy(src_path, dest_path) # Copying raw image to output directory
-#                 os.rename(dest_path, newpath) # Renaming raw image
-#                 o=o+1
-#             if 'color_mask' in image:  # Criterion for color mask  
-#                 newpath=os.path.join(maskimages_path, newname)
-#                 dest_path=os.path.join(maskimages_path, image)
-#                 shutil.copy(src_path, dest_path) # Copying mask to output directory
-#                 os.rename(dest_path, newpath) # Renaming mask
-#                 p=p+1
+ 

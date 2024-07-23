@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.models as models
-from SAM.segment_anything import  SamPredictor, sam_model_registry
+ 
 # from MobileSAM.mobile_sam import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
 
 from working_dir_root import learningR,learningR_res,SAM_pretrain_root
@@ -18,23 +18,7 @@ if GPU_mode ==True:
 
 else:
     device = torch.device("cpu")
-sam_checkpoint = SAM_pretrain_root+"sam_vit_h_4b8939.pth"
-sam_checkpoint = SAM_pretrain_root+"sam_vit_l_0b3195.pth"
-sam_checkpoint =SAM_pretrain_root+ "sam_vit_b_01ec64.pth"
-# self.inter_bz =1
-model_type = "vit_h"
-model_type = "vit_l"
-model_type = "vit_b"
-
-# model_type = "vit_t"
-# sam_checkpoint = "./MobileSAM/weights/mobile_sam.pt"
-
-# mobile SAM
-sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
-# self.predictor = SamPredictor(self.sam) 
-Vit_encoder = sam.image_encoder
-Vit_encoder.to(device)
-
+ 
 # Folder paths
 dataset_label_root = "C:/2data/cholec80/tool_annotations/"
 dataset_video_root = "C:/2data/cholec80/frames/"
@@ -43,7 +27,7 @@ output_folder_pkl = "C:/2data/cholec80/output_pkl/"
 output_folder_sam_feature = "C:/2data/cholec80/output_sam_features/"
 
 img_size = (256, 256)  # Specify the desired size
-video_buffer_len = 29
+video_buffer_len = 30
 
 # Function to read labels from a text file
 def read_labels(file_path):
@@ -113,33 +97,7 @@ for file_name in sorted(os.listdir(dataset_label_root)):
                     pickle.dump(data_dict, file)
                     print("Pkl file created:" +pkl_file_name)
 
-                if Create_sam_feature == True:
-                    this_video_buff = data_dict['frames'] 
-                    video_buff_GPU = torch.from_numpy(np.float32(this_video_buff)).to (device)
-                    video_buff_GPU = video_buff_GPU.permute(1,0,2,3) # Reshape to (29, 3, 64, 64)
-                    input_resample =   F.interpolate(video_buff_GPU,  size=(1024,  1024), mode='bilinear', align_corners=False)
-                    
-                    bz,  ch, H, W = input_resample.size()
-                    predicted_tensors =[]
-                    with torch.no_grad():
-
-                        for i in range(bz):
-                            
-                            input_chunk = (input_resample[i:i+1] -124.0)/60.0
-                            output_chunk = Vit_encoder(input_chunk)
-                            predicted_tensors.append(output_chunk)
-                        
-                        # Concatenate predicted tensors along batch dimension
-                        concatenated_tensor = torch.cat(predicted_tensors, dim=0)
-                        
-                    
-                    features = concatenated_tensor.half()
-                    sam_pkl_file_name = f"clip_{file_counter:06d}.pkl"
-                    sam_pkl_file_path = os.path.join(output_folder_sam_feature, sam_pkl_file_name)
-
-                    with open(sam_pkl_file_path, 'wb') as file:
-                        pickle.dump(features, file)
-                        print("sam Pkl file created:" +sam_pkl_file_name)
+                 
                 # Increment the file counter
                 file_counter += 1
 
