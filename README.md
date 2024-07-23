@@ -83,9 +83,10 @@ Convert the raw cholec80 data into pkls of video clips.
 
 
 ### Train the model 
+
  * pretrained backbone can be downloaded here: "https://upenn.box.com/s/nsukq51tbdxvlgh6lugnkvufnt42blk1".  paste the dino_deitsmall8_pretrain.pth under the config_root folder
 
-*Training Script: main.py
+* Training Script: main.py
  
 To train the model, 
 first, set your data storage dir in working_dir_root.py 
