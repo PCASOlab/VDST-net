@@ -46,8 +46,10 @@ Additionally, we are also sharing the data pre-processing script for cholec80 vi
 * `working_dir_root.py`: Default parameters and setting 
 * `model`: Model code
     * `base_models.py`: code for basic MLP, 3D CNN structures
-    * `eval`: Quantitative evaluation (LSD) and conditional image generation (Stable-LSD)
-    * `models`: Core model definitions
+    * `model_KD.py`: Key implementation for the semi-decoupled Knowledge distillation 
+    * `model_TC.py`: Teacher module based on MLP
+    * `model_ST.py`: Student module based on 3DCNN
+    * `vision_transformer.py`: ViT backbone, refer to [Vit pytorch implementation](https://github.com/lucidrains/vit-pytorch?tab=readme-ov-file#vision-transformer---pytorch)
         * `unet_with_pos.py`: Position-augmented latent diffusion decoder
         * `backbone.py`: Backbone CNN for object encoder
         * `slot_attn.py`: Slot Attention module for object encoder
