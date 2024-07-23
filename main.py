@@ -23,7 +23,7 @@ import torch.nn.parallel
 import torch.distributed as dist
 import scheduler
 from working_dir_root import GPU_mode ,Continue_flag ,Visdom_flag ,Display_flag ,loadmodel_index  ,img_size,Load_flow,Load_feature
-from working_dir_root import Max_lr, learningR,learningR_res,Save_feature_OLG,sam_feature_OLG_dir
+from working_dir_root import Max_lr, learningR,learningR_res,Save_feature_OLG,sam_feature_OLG_dir,Evaluation
 from dataset import io
 
 # GPU_mode= True
@@ -105,6 +105,8 @@ epoch =0
 features =None
 visdom_id=0
 Enable_ST = False
+if Evaluation:
+    Enable_ST = True
 while (1):
     start_time = time()
     input_videos, labels= dataLoader.read_a_batch()
