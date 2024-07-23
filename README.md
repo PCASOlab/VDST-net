@@ -5,7 +5,7 @@ This is an official PyTorch implementation of the VDST-Net model.
 > [VDST-Net: Disentangling spatio-temporal knowledge for weakly supervised surgical tool segmentation in video](https://arxiv.org/abs/2407.15794)
 
 ## Updates
-* **2024.07.23:** Added implementation of VDST-Net, along with the code for Transient Object Presence Cholec80 data processing.
+* **2024.07.23:** Added implementation of VDST-Net, along with the data curation code of Transient Object Presence Cholec80 dataset.
 
 ## Hightlights
 
