@@ -174,7 +174,7 @@ class Display(object):
             # result = cv2.addWeighted(cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR), 0.7, heatmap_colormap, 0.3, 0)
 
             # Display the result
-            cv2.imshow('Grad-CAM', heatmap_colormap)
+            cv2.imshow('ST-CAM', heatmap_colormap)
             cv2.waitKey(1)
         # Cam3D = nn.functional.interpolate(side_out_low, size=(1, Path_length), mode='bilinear')
 

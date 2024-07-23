@@ -32,19 +32,16 @@ args = parser.parse_args()
 # Assigning the arguments to the variables
 working_root = args.working_root
 
-Dataset_video_root = working_root + "training_data/video_clips/"
-Dataset_video_pkl_root = working_root + "training_data/video_clips_pkl/"
-Dataset_video_pkl_flow_root = working_root + "training_data/video_clips_pkl_flow/"
+ 
+ 
 Dataset_video_pkl_cholec = working_root + "training_data/video_clips_pkl_cholec/"
 Dataset_label_root = working_root + "training_data/"
 config_root = working_root + "config/"
 Output_root = working_root + "output/"
-SAM_pretrain_root = working_root + "output/SAM/"
-output_folder_sam_feature = working_root + "cholec80/output_sam_features/"
+ 
 
-train_test_list_dir = working_root + "output/train_test_list/"
-train_sam_feature_dir = working_root + "cholec80/train_sam_feature/"
-sam_feature_olg_dir = working_root + "cholec80/sam_feature_OLG/"
+# train_test_list_dir = working_root + "output/train_test_list/"
+ 
 
 Evaluation = args.evaluation
 img_size = args.img_size

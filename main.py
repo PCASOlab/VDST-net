@@ -105,25 +105,9 @@ dataLoader = myDataloader(img_size = img_size,Display_loading_video = False,Read
 if Continue_flag == False:
     Model_infer.VideoNets.apply(weights_init)
 else:
-    pretrained_dict = torch.load(Output_root + 'outNets' + loadmodel_index )
-    # model_dict = Model_infer.VideoNets.state_dict()
-
-    # # 1. filter out unnecessary keys
-    # pretrained_dict_trim = {k: v for k, v in pretrained_dict.items() if k in model_dict}
-    # # 2. overwrite entries in the existing state dict
-    # model_dict.update(pretrained_dict_trim)
-    # 3. load the new state dict
-    Model_infer.VideoNets.load_state_dict(pretrained_dict )
-
-    pretrained_dict2 = torch.load(Output_root + 'outNets_s' + loadmodel_index )
-    # model_dict = Model_infer.resnet.state_dict()
-
-    # # 1. filter out unnecessary keys
-    # pretrained_dict_trim = {k: v for k, v in pretrained_dict.items() if k in model_dict}
-    # # 2. overwrite entries in the existing state dict
-    # model_dict.update(pretrained_dict_trim)
-    # 3. load the new state dict
-    Model_infer.VideoNets_S.load_state_dict(pretrained_dict2 )
+    Model_infer.VideoNets.load_state_dict( torch.load(Output_root + 'outNets_tc' + loadmodel_index ) )
+    Model_infer.VideoNets_S.load_state_dict( torch.load(Output_root + 'outNets_st' + loadmodel_index ) )
+    Model_infer.Vit_encoder.load_state_dict( torch.load(Output_root + 'outNets_vit' + loadmodel_index ) )
 read_id = 0
 print(Model_infer.resnet)
 print(Model_infer.VideoNets)
@@ -194,9 +178,10 @@ while (1):
         plotter.plot('l0s', 'l0s', 'l0s', visdom_id, Model_infer.lossDisplay_s.cpu().detach().numpy())
 
     if (read_id % 1000) == 0  :
-        torch.save(Model_infer.VideoNets.state_dict(), Output_root + "outNets" + str(saver_id) + ".pth")
-        torch.save(Model_infer.VideoNets_S.state_dict(), Output_root + "outNets_s" + str(saver_id) + ".pth")
-        # torch.save(Model_infer.resnet.state_dict(), Output_root + "outResNets" + str(saver_id) + ".pth")
+        torch.save(Model_infer.state_dict(), Output_root + "outNets" + str(saver_id) + ".pth")
+        torch.save(Model_infer.VideoNets.state_dict(), Output_root + "outNets_tc" + str(saver_id) + ".pth")
+        torch.save(Model_infer.VideoNets_S.state_dict(), Output_root + "outNets_st" + str(saver_id) + ".pth")
+        torch.save(Model_infer.Vit_encoder.state_dict(), Output_root + "outNets_vit" + str(saver_id) + ".pth")
 
         saver_id +=1
         if saver_id >5:
