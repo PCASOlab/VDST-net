@@ -1,10 +1,15 @@
-# Code for "Disentangling spatio-temporal information for weakly supervised surgical tool segmentation in video"
+#VDST-NET: Disentangling spatio-temporal knowledge for weakly supervised surgical tool segmentation in video
 
 ## Description
 
-This repository contains scripts for implemention of our paper's training pipeline for video-level weakly supervised segmentation. The key scripts included are:
-
+This is an official PyTorch implementation of the VDST-Net model. 
+> [VDST-NET: Disentangling spatio-temporal knowledge for weakly supervised surgical tool segmentation in video](https://arxiv.org/abs/2407.15794)
  
+
+<p align="center">
+  <img src="figure/task.png" width="90%" />
+</p>
+
 
 ## Setup and Installation
 
