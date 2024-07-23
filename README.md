@@ -35,6 +35,28 @@ Our method not only works for the surgical domain, also demonstrated superior pe
 
 ## Repository Overview
 
+We are releasing our implementation primarily based on vision transformer backbones.  Our goal is to provide a concise and modularized implementation, while also allowing future studies to integrate other retained backbones, such as Resnet backbones pretrained on the ImageNet dataset.
+
+Additionally, we are also sharing the data pre-processing script for cholec80 videos to convert it to Transient Object presence clips with video-level labels. We hope that our code release will inspire future research and facilitate the real-world application of our model.
+
+
+* `main.py`: Model training and visualization
+* `data_cholec_reader_convect.py`: Convert Cholec80 raw data to clips for training.
+* `data_cholec_seg8k_convect.py`: Convert Cholec_seg8k with segmentation ground-truth to clips for evaluation
+* `working_dir_root.py`: Default parameters and setting 
+* `model`: Model code
+    * `base_models.py`: code for basic MLP, 3D CNN structures
+    * `eval`: Quantitative evaluation (LSD) and conditional image generation (Stable-LSD)
+    * `models`: Core model definitions
+        * `unet_with_pos.py`: Position-augmented latent diffusion decoder
+        * `backbone.py`: Backbone CNN for object encoder
+        * `slot_attn.py`: Slot Attention module for object encoder
+* `scripts`: Helper scripts
+    * `data_preprocess`: Dataset downloading and pre-processing
+    * `environment.sh`: Environment setup
+* `configs`: Configuration files for training and evaluation.
+
+
 
 ## Setup and Installation
 
@@ -59,7 +81,11 @@ Convert the raw cholec80 data into pkls of videos clips.
 
 download data:
 Cholec80 dataset: [Download Cholec80](https://s3.unistra.fr/camma_public/datasets/cholec80/cholec80.tar.gz)
- 
+
+
+
+To train the model, 
+first pretrained backbone can be downloaded here: "https://upenn.box.com/s/nsukq51tbdxvlgh6lugnkvufnt42blk1".  Put the dino_deitsmall8_pretrain.pth under the config_root folder
 
 2. Training Script: main.py
 This script trains the  model on the specified dataset. 
