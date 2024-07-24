@@ -35,7 +35,7 @@ Our method not only works for the surgical domain, also demonstrated superior pe
 
 ## Repository Overview
 
-We are releasing our implementation primarily based on vision transformer backbones.  Our goal is to provide a concise and modularized implementation, while also allowing future studies to integrate other retained backbones, such as Resnet backbones pretrained on the ImageNet dataset.
+We are releasing our implementation primarily based on vision transformer backbones.  Our goal is to provide a concise and modularized implementation, while also allowing future studies to integrate other pretrained backbones, such as Resnet backbones pretrained on the ImageNet dataset.
 
 Additionally, we are also sharing the data pre-processing script for cholec80 videos to convert it to Transient Object presence clips with video-level labels. We hope that our code release will inspire future research and facilitate the real-world application of our model.
 
