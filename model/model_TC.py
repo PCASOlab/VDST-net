@@ -143,10 +143,15 @@ class _VideoTC(nn.Module):
         features=[]
         for j, name in enumerate(self.blocks):
             out = self.blocks[j](out)
+            flag =random. choice([False, True])
+            if flag == True:
+                out= Pure_down_pool(out)
             features.append(out)
         bz, ch, D, H, W = out.size()
         # downsampled_mask = F.interpolate(input_flows, size=(H, W), mode='nearest')
-     
+        features[0]=F.interpolate(features[0],  size=(D,H,W), mode='trilinear', align_corners=False)
+        features[1]=F.interpolate(features[1],  size=(D,H,W), mode='trilinear', align_corners=False)
+        features[2]=F.interpolate(features[2],  size=(D,H,W), mode='trilinear', align_corners=False)
         cat_feature = torch.cat([x, features[0],features[1],features[2]], dim=1)
 
         activation = nn.Sigmoid()
