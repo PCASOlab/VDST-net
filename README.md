@@ -27,7 +27,7 @@ The challenge imposed by the high uncertainty of the label is amplified in the T
   <img src="figure/Ablation.jpeg" width="80%" />
 </p>
 
-Our method not only works for the surgical domain, also demonstrated superior performance on a general dataset: YouYube-Objects video data. Under the training condition of using only video-level label. Our method demonstrates robustness, producing activation maps and segmentation masks that accurately follow the objects' contours, with minimal false activation on the background.  
+Our method not only works for the surgical domain, also demonstrated superior performance on a general dataset: YouTube-Objects video data. Under the training condition of using only video-level label. Our method demonstrates robustness, producing activation maps and segmentation masks that accurately follow the objects' contours, with minimal false activation on the background.  
 <p align="center">
   <img src="figure/YTOBJ_Supple.jpeg" width="80%" />
 </p>
