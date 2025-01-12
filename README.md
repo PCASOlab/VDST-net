@@ -41,8 +41,8 @@ Additionally, we are also sharing the data pre-processing script for cholec80 vi
 
 
 * `main.py`: Model training and visualization
-* `data_cholec_reader_convect.py`: Convert Cholec80 raw data to clips for training.
-* `data_cholec_seg8k_convect.py`: Convert Cholec_seg8k with segmentation ground-truth to clips for evaluation
+* `data_cholec_reader_convert.py`: Convert Cholec80 raw data to clips for training.
+* `data_cholec_seg8k_convert.py`: Convert Cholec_seg8k with segmentation ground-truth to clips for evaluation
 * `working_dir_root.py`: Default parameters and setting 
 * `model`: Model code
     * `base_models.py`: code for basic MLP, 3D CNN structures
