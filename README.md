@@ -77,9 +77,10 @@ Ensure you have the following installed:
 * download raw cholec80 data:
 Cholec80 dataset: [Download Cholec80](https://s3.unistra.fr/camma_public/datasets/cholec80/cholec80.tar.gz)
 
-* Use Dataset pre-processing Script: data_cholec_reader_convect.py
+* Use Dataset pre-processing Script: data_cholec_reader_convert.py
 Convert the raw cholec80 data into pkls of video clips.
 
+For YTOBJ dataset we downloaded from here: [Download YTOBJ](https://calvin-vision.net/datasets/youtube-objects-dataset/)
 
 ### Train the model 
 
