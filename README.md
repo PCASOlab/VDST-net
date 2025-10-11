@@ -1,4 +1,4 @@
-# VDST-Net: Disentangling spatio-temporal knowledge for weakly supervised surgical tool segmentation in video
+# VDST-Net: Disentangling spatio-temporal knowledge for weakly supervised surgical tool segmentation in video | WACV2025
 
 ## Description
 This is an official PyTorch implementation of the VDST-Net model. 
