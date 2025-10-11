@@ -8,6 +8,11 @@ This is an official PyTorch implementation of the VDST-Net model.
 
 ## Updates
 * **2024.07.23:** Added implementation of VDST-Net, along with the data curation code of Transient Object Presence Cholec80 dataset.
+  
+## Coming soon
+* Implementation with DINOv3  
+* Data parallelization for training
+ 
 
 ## Hightlights
 
@@ -98,9 +103,5 @@ To evaluate the model, and visualize activation maps, run:
 python main.py --evaluation True  --visdom_flag False --display_flag True
 
 
-## Coming soon
-* Implementation with Resnet backbone
-* Data parallelization for training
-* Training and evaluation on the YouTube-objects dataset
 
  
