@@ -2,7 +2,7 @@
 
 ## Description
 This is an official PyTorch implementation of the VDST-Net model. 
-> [VDST-Net: Disentangling spatio-temporal knowledge for weakly supervised surgical tool segmentation in video]([https://arxiv.org/abs/2407.15794](https://openaccess.thecvf.com/content/WACV2025/papers/Liao_Disentangling_Spatio-Temporal_Knowledge_for_Weakly_Supervised_Object_Detection_and_Segmentation_WACV_2025_paper.pdf) | WACV 2025
+> [VDST-Net: Disentangling spatio-temporal knowledge for weakly supervised surgical tool segmentation in video](https://openaccess.thecvf.com/content/WACV2025/papers/Liao_Disentangling_Spatio-Temporal_Knowledge_for_Weakly_Supervised_Object_Detection_and_Segmentation_WACV_2025_paper.pdf) | WACV 2025
 
 > [Presentation video](https://video.computer.org/WACV-Posters25/3qQJXCcJnCTXJ7fltwoLiT-WACV25-1620.mp4)
 
