@@ -102,6 +102,26 @@ python main.py --evaluation False  --visdom_flag False --display_flag False
 To evaluate the model, and visualize activation maps, run:
 python main.py --evaluation True  --visdom_flag False --display_flag True
 
+## Cite
+
+```
+@inproceedings{liao2025disentangling,
+  title={Disentangling spatio-temporal knowledge for weakly supervised object detection and segmentation in surgical video},
+  author={Liao, Guiqiu and Jogan, Matjaz and Koushik, Sai and Eaton, Eric and Hashimoto, Daniel A},
+  booktitle={2025 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  pages={8013--8023},
+  year={2025},
+  organization={IEEE}
+}
+```
+## License
+
+This project is released under the Apache-2.0 License. See the LICENSE file for more details.
+
+## Contact
+
+If you have any questions about the code, please contact Guiqiu Liao liaoguiqiu@outlook.com
+
 
 
  
