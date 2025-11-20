@@ -75,7 +75,11 @@ Ensure you have the following installed:
 - OpenCV
 
  
-
+### Clone the repository:
+   ```bash
+   git clone https://github.com/PCASOlab/VDST-net.git
+   cd VDST-net
+   ```
 
 ### Preparing Data
 
