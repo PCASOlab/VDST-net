@@ -120,7 +120,7 @@ python main.py --evaluation True  --visdom_flag False --display_flag True
 ```
 ## License
 
-This project is released under the Apache-2.0 License. See the LICENSE file for more details.
+This project is released under the PENN ACADEMIC SOFTWARE LICENSE AGREEMENT. See the LICENSE file for more details.
 
 ## Contact
 
